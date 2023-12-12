@@ -1,0 +1,100 @@
+<script setup lang="ts">
+const mode = useColorMode();
+
+const isLight = computed((): boolean => mode.preference === "light");
+
+interface Item {
+  label: string;
+  icon: string;
+  defaultOpen?: boolean;
+  disabled?: boolean;
+  description?: string;
+  slot?: string;
+}
+
+const items: Item[] = [
+  {
+    label: "Getting Started",
+    icon: "i-heroicons-information-circle",
+    defaultOpen: false,
+    slot: "getting-started",
+  },
+  {
+    label: "Installation",
+    icon: "i-heroicons-arrow-down-tray",
+    defaultOpen: false,
+    slot: "installation",
+  },
+  {
+    label: "Theming",
+    icon: "i-heroicons-eye-dropper",
+    defaultOpen: false,
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque elit, tristique placerat feugiat ac, facilisis vitae arcu. Proin eget egestas augue. Praesent ut sem nec arcu pellentesque aliquet. Duis dapibus diam vel metus tempus vulputate.",
+  },
+  {
+    label: "Layouts",
+    icon: "i-heroicons-rectangle-group",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque elit, tristique placerat feugiat ac, facilisis vitae arcu. Proin eget egestas augue. Praesent ut sem nec arcu pellentesque aliquet. Duis dapibus diam vel metus tempus vulputate.",
+  },
+  {
+    label: "Components",
+    icon: "i-heroicons-square-3-stack-3d",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque elit, tristique placerat feugiat ac, facilisis vitae arcu. Proin eget egestas augue. Praesent ut sem nec arcu pellentesque aliquet. Duis dapibus diam vel metus tempus vulputate.",
+  },
+  {
+    label: "Utilities",
+    icon: "i-heroicons-wrench-screwdriver",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque elit, tristique placerat feugiat ac, facilisis vitae arcu. Proin eget egestas augue. Praesent ut sem nec arcu pellentesque aliquet. Duis dapibus diam vel metus tempus vulputate.",
+  },
+];
+</script>
+
+<template>
+  <UAccordion
+    :items="items"
+    :color="isLight ? 'green' : 'white'"
+    class="acordion space-y-4"
+    multiple
+    variant="solid"
+  >
+    <template #item="{ item }">
+      <p class="italic text-gray-900 dark:text-white text-center">
+        {{ item.label }}
+      </p>
+    </template>
+
+    <template #getting-started>
+      <div class="text-gray-900 dark:text-white text-center">
+        <Logo class="w-auto h-8 mx-auto" />
+
+        <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">
+          Fully styled and customizable components for Nuxt.
+        </p>
+      </div>
+    </template>
+
+    <template #installation="{ description }">
+      <div class="flex flex-col justify-center items-center gap-1 mb-4">
+        <h3 class="text-xl font-bold text-gray-900 dark:text-white">
+          Installation
+        </h3>
+        <p class="text-sm text-gray-500 dark:text-gray-400">
+          Install <code>@nuxt/ui</code> dependency to your project:
+        </p>
+        <p>
+          {{ description }}
+        </p>
+      </div>
+
+      <div class="flex flex-col items-center">
+        <code>$ npm i @nuxt/ui</code>
+        <code>$ yarn add @nuxt/ui</code>
+        <code>$ pnpm add @nuxt/ui</code>
+      </div>
+    </template>
+  </UAccordion>
+</template>
