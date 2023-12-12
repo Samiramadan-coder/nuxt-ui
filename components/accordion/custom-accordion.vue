@@ -3,6 +3,8 @@ const mode = useColorMode();
 
 const isLight = computed((): boolean => mode.preference === "light");
 
+console.log(mode.preference);
+
 interface Item {
   label: string;
   icon: string;

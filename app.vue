@@ -1,9 +1,9 @@
 <template>
-  <div class="mt-10">
+  <div class="mt-5">
     <UContainer>
       <!-- Accordion -->
       <AccordionNormalAccordion />
-      <AccordionCustomAccordion class="mt-10" />
+      <AccordionCustomAccordion class="mt-5" />
     </UContainer>
   </div>
 </template>
